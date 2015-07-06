@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class NonRepeatedCharacter {
@@ -8,31 +10,29 @@ public class NonRepeatedCharacter {
 		System.out.println("Enter youre text:");
 		String sc = new Scanner(System.in).nextLine();
 		NonRepeatedCharacter c = new NonRepeatedCharacter();
-		
+
 		System.out.println("VALUE = " + sc);
 		System.out.println("RESULT = " + c.firstNonRepeatedCharacter(sc));
 	}
-	
-	public char firstNonRepeatedCharacter(String str) {
-		HashMap<Character, Integer> characterhashtable = new HashMap<Character, Integer>();
-		char result = 0;
+
+	public String firstNonRepeatedCharacter(String str) {
+		Map<Character, Integer> collection = new LinkedHashMap<Character, Integer>();
+		String result = null;
 		for (int i = 0; i < str.length(); i++) {
 			Character c = str.charAt(i);
-			if (characterhashtable.containsKey(c)) {
-				characterhashtable.put(c, characterhashtable.get(c) + 1);
+			if (collection.containsKey(c)) {
+				collection.put(c, collection.get(c) + 1);
 			} else {
-				characterhashtable.put(c, 1);
+				collection.put(c, 1);
+			}
+		}
+		for (Character k : collection.keySet()) {
+			if (collection.get(k) == 1) {
+				result = k.toString();
+				break;
 			}
 		}
 
-		for (int i = 0; i < str.length(); i++) {
-			Character c = str.charAt(i);
-			if (characterhashtable.get(c) == 1) {
-				result = c;
-			} else if (characterhashtable.get(c) == 0) {
-				result = 0;
-			}
-		}
 		return result;
 	}
 }
