@@ -15,20 +15,32 @@ public class TestNonRepeatedCharacter {
 	}
 	
 	@Test
-	public void SouldFirstNonRepeatedLetterWhenString() {
-		assertEquals((Character)'a', c.firstNonRepeatedCharacter("ffgga"));
-		assertEquals((Character)'g', c.firstNonRepeatedCharacter("ffgtts"));
+	public void shouldNullWhenStringIsEmpty() {
+		assertEquals(null, c.firstNonRepeatedCharacter(""));
 	}
-	
+
 	@Test
-	public void SouldNullWhenAllLettersRepeated() {
-		assertEquals((Character)'0', c.firstNonRepeatedCharacter("Ss"));
+	public void shouldNullWhenAllCharactersRepeated() {
+		assertEquals(null, c.firstNonRepeatedCharacter("Ss"));
 	}
-	
+
 	@Test
-	public void SouldNullWhenStringIsEmpty() {
-		assertEquals((Character)'0', c.firstNonRepeatedCharacter(""));
+	public void shouldFirstNonRepeatedCharacterWhenString() {
+		assertEquals((Character) 'k', c.firstNonRepeatedCharacter("k"));
+		assertEquals((Character) 'a', c.firstNonRepeatedCharacter("ffgga"));
+		assertEquals((Character) 'g', c.firstNonRepeatedCharacter("ffgtts"));
 	}
-	
+
+	@Test
+	public void shouldFirstNonRepeatedCharacterWhenStringWithNumbers() {
+		assertEquals((Character) 'u', c.firstNonRepeatedCharacter("uio9987yt654355"));
+	}
+
+	@Test
+	public void shouldFirstNonRepeatedCharacterWhenLongString() {
+		assertEquals(null, c.firstNonRepeatedCharacter("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"));
+	}
+
 }
+
 
